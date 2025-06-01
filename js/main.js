@@ -10,12 +10,15 @@ elForm.addEventListener("submit", function (evt) {
     let todo = {
         id: todos[todos.length - 1 ]?.id ? todos[todos.length - 1].id + 1 : 1,
         title: evt.target.todoInput.value,
-        isComplated: false
+        isComplated: false,
+        image:elChooseImg.src
     }
     todos.push(todo)
     evt.target.reset()
     renderTodos(todos, elForm.nextElementSibling)
     localStorage.setItem("todos", JSON.stringify(todos))
+    console.log(todos);
+    
 })
 // create todo end
 
@@ -26,7 +29,8 @@ function renderTodos(arr, list) {
         let elItem = document.createElement("li")
         elItem.className = `bg-white ${item.isComplated ? "line-through pacity-[70%] cursor-not-allowed" : " "} duration-300 p-5 rounded-md flex items-center justify-between `
         elItem.innerHTML = `
-        <div class="flex items-center gap-2">
+        <div class="flex items-center justify-between">
+               <div class="flex items-center gap-2">
                 <label>
                     <input class="hidden" type="checkbox">
                     <div onclick="handleCheckClick(${item.id})" id="complate" class="w-[20px] h-[20px] relative flex items-center justify-center rounded-full border-[1px] border-slate-500 ">
@@ -41,6 +45,8 @@ function renderTodos(arr, list) {
                 <button id="delete" class="bg-red-700 text-white p-2 rounded-md w-[100px]">Delete</button>
                 
             </div>
+        </div>
+        <img class=" mt-5 rounded-md w-full h-[300px]" src="${item.image}" alt="todo img" width="200" height="200"/>
         `
         list.appendChild(elItem)
 
@@ -71,6 +77,12 @@ function handleCheckClick(id){
     findObj.isComplated = !findObj.isComplated
     renderTodos(todos, elForm.nextElementSibling)
     localStorage.setItem("todos", JSON.stringify(todos))
-
 }
 //check part
+
+// choose img part
+elChooseInput.addEventListener("change",function(e) {
+    elChooseImg.src = URL.createObjectURL(e.target.files[0]);
+})
+
+// choose img part end
