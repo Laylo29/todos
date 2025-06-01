@@ -9,9 +9,21 @@
 </head>
 <body>
 
-    <form autocomplete="off" class="  gap-[15px] todo-form flex bg-white mx-auto p-5 rounded-md w-[500px] bg-white mt-5 mb-5 ">
-        <input class=" outline-none focus:shadow-md shadow-blue-500 border-[1px] border-slate-500 w-[70%] p-2 rounded-md" name="todoInput" type="text"  placeholder="Enter todo">
-         <button type="submit" class="w-[30%] bg-green-800 hover:shadow-md rounded-md p-3 text-white shadow-white-500">create</button>
+    <form autocomplete="off" class="  todo-form bg-white mx-auto p-5 rounded-md w-[500px] bg-white mt-5 mb-5 ">
+        <div class="flex items-center gap-[15px]">
+            <input class=" outline-none focus:shadow-md shadow-blue-500 border-[1px] border-slate-500 w-[70%] p-2 rounded-md" name="todoInput" type="text"  placeholder="Enter todo">
+            <label>
+                <input class="hidden choose-input" type="file">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-box-arrow-in-down cursor-pointer" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1z"/>
+                    <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
+                  </svg>
+            </label>
+             <button type="submit" class="w-[30%] bg-green-800 hover:shadow-md rounded-md p-3 text-white shadow-white-500">create</button>
+        </div>
+        <div class="mt-5">
+            <img class="choose-img rounded-md object-cover" src="./images/background-img.jpg" alt="img ">
+        </div>
     </form>
     <ul class=" w-[500px] flex flex-col mx-auto gap-5"></ul>
     

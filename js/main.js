@@ -1,6 +1,8 @@
 let elForm = document.querySelector(".todo-form ")
+let elChooseInput = document.querySelector(".choose-input")
+let elChooseImg = document.querySelector(".choose-img")
 
-let todos = []
+let todos = JSON.parse(localStorage.getItem("todos")) || []
 
 // create todo start 
 elForm.addEventListener("submit", function (evt) {
@@ -13,6 +15,7 @@ elForm.addEventListener("submit", function (evt) {
     todos.push(todo)
     evt.target.reset()
     renderTodos(todos, elForm.nextElementSibling)
+    localStorage.setItem("todos", JSON.stringify(todos))
 })
 // create todo end
 
@@ -45,17 +48,20 @@ function renderTodos(arr, list) {
             if (e.target.id == "delete") {
                 todos.splice(index, 1)
                 renderTodos(todos, elForm.nextElementSibling)
+                localStorage.setItem("todos", JSON.stringify(todos))
             }
             else if(e.target.id == "edit"){
                 if(!item.isComplated){
                     let newValue = prompt(item.title)
                     todos[index].title = newValue
                     renderTodos(todos,elForm.nextElementSibling)
+                    localStorage.setItem("todos", JSON.stringify(todos))
                 }
             }
         })
     });
 }
+renderTodos(todos, elForm.nextElementSibling)
 // render todos
 
 // check part
@@ -64,6 +70,7 @@ function handleCheckClick(id){
     let findObj = todos.find(item => item.id == id)
     findObj.isComplated = !findObj.isComplated
     renderTodos(todos, elForm.nextElementSibling)
+    localStorage.setItem("todos", JSON.stringify(todos))
 
 }
 //check part
