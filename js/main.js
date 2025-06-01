@@ -18,6 +18,9 @@ elForm.addEventListener("submit", function (evt) {
     renderTodos(todos, elForm.nextElementSibling)
     localStorage.setItem("todos", JSON.stringify(todos))
     console.log(todos);
+    elChooseImg.src = null
+    elChooseImg.classList.remove("h-[200px]")
+
     
 })
 // create todo end
@@ -27,7 +30,7 @@ function renderTodos(arr, list) {
     list.innerHTML = null
     arr.forEach((item, index) => {
         let elItem = document.createElement("li")
-        elItem.className = `bg-white ${item.isComplated ? "line-through pacity-[70%] cursor-not-allowed" : " "} duration-300 p-5 rounded-md flex items-center justify-between `
+        elItem.className = `bg-white ${item.isComplated ? "line-through opacity-[70%] cursor-not-allowed" : " "} duration-300 p-5 rounded-md `
         elItem.innerHTML = `
         <div class="flex items-center justify-between">
                <div class="flex items-center gap-2">
@@ -46,7 +49,7 @@ function renderTodos(arr, list) {
                 
             </div>
         </div>
-        <img class=" mt-5 rounded-md w-full h-[300px]" src="${item.image}" alt="todo img" width="200" height="200"/>
+       <img class=" mt-5 ${item.image.includes("null") ? "hidden" : " "} rounded-md w-full h-[300px]" src="${item.image}" alt="todo img" width="200" height="200"/> 
         `
         list.appendChild(elItem)
 
@@ -83,6 +86,7 @@ function handleCheckClick(id){
 // choose img part
 elChooseInput.addEventListener("change",function(e) {
     elChooseImg.src = URL.createObjectURL(e.target.files[0]);
+    elChooseImg.classList.add("h-[200px]")
 })
 
 // choose img part end
